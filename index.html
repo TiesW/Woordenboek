@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script>
+            function woordToevoegen()
+            {
+                var woord = document.getElementById("woordenInput").value;
+                var definitie = document.getElementById("defenitieInput").value;
+
+                document.getElementById("column1").innerHTML += woord + ": &nbsp <br>";
+                document.getElementById("column2").innerHTML += definitie + "<br>";
+
+            }
+        </script>
+        <style>
+            .column
+            {
+                flex: 50%;
+            }
+            .row
+            {
+                display: flex;
+            }
+
+            #column1
+            {
+                text-align: right;
+            }
+
+        </style>
+    </head>
+    <body>
+        <span>voer hier je woord in</span>
+        <input type="text" id="woordenInput">
+        <br>
+        <span>voer hier je definitie in</span>
+        <input type="text" id="defenitieInput">
+        <br>
+        <input type="button" id="submitButton" onclick="woordToevoegen()" value="Submit">
+        <div class="row">
+            <div class="column" id="column1"></div>
+            <div class="column" id="column2"></div>
+        </div>
+    </body>
+</html>
