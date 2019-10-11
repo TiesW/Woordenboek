@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <script>
+        class Voorbeeld{
+            woord;
+            definitie;
+            constructor(Woord, Definitie){
+                this.woord = Woord;
+                this.definitie = Definitie;
+            }
+        }
+
+
+
+voorbeelden = [];
+voorbeelden[0] = new Voorbeeld("appel", "fruit");
+
+    function lijstMaken(){
+
+        var tableHeaderRowCount = 1;
+        var table = document.getElementById("tabelwoorden");
+        var rowCount = table.rows.length;
+        for (var i = 1; i < rowCount; i++) {
+            table.deleteRow(tableHeaderRowCount);
+        }
+
+        var rows = voorbeelden;
+        var html = document.getElementById("tabelwoorden").innerHTML;
+        for (var i = 0; i < rows.length; i++) {
+            html+="<tr>";
+            html+="<td>"+rows[i].woord+"</td>";
+            html+="<td>"+rows[i].definitie+"</td>";
+            html+="</tr>";
+        }
+        document.getElementById("tabelwoorden").innerHTML = html;
+    }
+
+        </script>
+        <style>
+            table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+        </style>
+    </head>
+    <body onload="lijstMaken()">
+
+            <div class="container">
+                <div class="lijst">
+                    <h1>Woorden</h1>
+                    <table id="tabelwoorden">
+                        <tr>
+                            <th>Woord</th>
+                            <th>Definitie</th>
+
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </body>
+</html>
+
