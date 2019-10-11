@@ -7,20 +7,9 @@
 <head>
         <link rel="stylesheet" href="mijnstyles.css" type="text/css">
         <style>
-   table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-            </style>
+        </style>
                 
 </head>
-
         <script>
             class Woord
             {
@@ -98,25 +87,25 @@ td, th {
             }
 
             
-    function lijstMaken(){
+            function lijstMaken(){
 
-var tableHeaderRowCount = 1;
-var table = document.getElementById("tabelwoorden");
-var rowCount = table.rows.length;
-for (var i = 1; i < rowCount; i++) {
-    table.deleteRow(tableHeaderRowCount);
-}
+                var tableHeaderRowCount = 1;
+                var table = document.getElementById("tabelwoorden");
+                var rowCount = table.rows.length;
+                for (var i = 1; i < rowCount; i++) {
+                    table.deleteRow(tableHeaderRowCount);
+                }
 
-var rows = woordObjecten;
-var html = document.getElementById("tabelwoorden").innerHTML;
-for (var i = 0; i < rows.length; i++) {
-    html+="<tr>";
-    html+="<td>"+rows[i].woord+"</td>";
-    html+="<td>"+rows[i].definitie+"</td>";
-    html+="</tr>";
-}
-document.getElementById("tabelwoorden").innerHTML = html;
-}
+                var rows = woordObjecten;
+                var html = document.getElementById("tabelwoorden").innerHTML;
+                for (var i = 0; i < rows.length; i++) {
+                    html+="<tr>";
+                    html+="<td>"+rows[i].woord+"</td>";
+                    html+="<td>"+rows[i].definitie+"</td>";
+                    html+="</tr>";
+                }
+                document.getElementById("tabelwoorden").innerHTML = html;
+                }
         </script>
         <style>
 /*             
