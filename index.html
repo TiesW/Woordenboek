@@ -23,24 +23,64 @@
                 }
             }
             var woordObjecten = [];
-            var woorden = ["croesus","vadem","eskader","spondee","echelonneren","techina","mitsgaders","immanentie","ommekomst"];
-            var definities = ["Fabelachtige rijke koning","Oude lengtemaat","Afdeling bij het leger","Versvoet","In rijen opstellen","Smeekgebed","Bovendien","Er in verblijvend","Afloop van termijn"];
+            var woorden = ["wat", "church", "street", "high", "hml", "fml"];
+            var woordenOutput = [];
+            var definities = [];
 
+            var counter = 0;
 
-            //croesus : "Fabelachtige rijke koning", vadem: "Oude lengtemaat", 
-            //eskader: "Afdeling bij het leger", spondee: "Versvoet", 
-            //Echelonneren: "In rijen opstellen", Techina: "Smeekgebed",
-            //Mitsgaders: "Bovendien", Immanentie: "Er in verblijvend",
-            //Ommekomst: "Afloop van termijn"
+            //xmlhttprequest
+            function myXMLHttpRequest(woorden) {
 
-            //woord_ = "kaas";
-            //defenitie = "zuivelproduct";
-            
-            function paginaLaden() {
-                maakWoordObj()
-                spelerLaden()
-                lijstMaken()
+                var data = null;
+
+                var xhr = new XMLHttpRequest();
+                xhr.withCredentials = true;
+
+                xhr.addEventListener("readystatechange", function () {
+                    if (this.readyState === 4) {
+                        // console.log(this.responseText);
+                        APIresponseToDefinities(this.responseText);
+                        counter += 1;
+                        
+                        if (woorden.length == definities.length) {
+                            maakWoordObj()
+                            lijstMaken()
+                        } else {
+                            myXMLHttpRequest(woorden)
+                        }
+                        
+
+                    
+                    }
+                });
+
+                xhr.open("GET", "https://mashape-community-urban-dictionary.p.rapidapi.com/define?term="+woorden[counter]);
+                xhr.setRequestHeader("x-rapidapi-host", "mashape-community-urban-dictionary.p.rapidapi.com");
+                xhr.setRequestHeader("x-rapidapi-key", "75042f20e3mshb4d82e7e5f04ca4p1fdc16jsn735557660585");
+
+                xhr.send(data);
+
             }
+
+            function APIresponseToDefinities(response) {
+                definities.push(JSON.parse(response).list[0].definition);
+
+            }
+
+
+            function paginaLaden() {
+                getDefinitions()
+                // maakWoordObj()
+                spelerLaden()
+                // lijstMaken()
+            }
+
+            function getDefinitions() {
+
+                myXMLHttpRequest(woorden)
+            }
+
 
             function maakWoordObj()
             {
@@ -106,6 +146,8 @@
                 }
                 document.getElementById("tabelwoorden").innerHTML = html;
                 }
+
+        
         </script>
         <style>
 /*             
