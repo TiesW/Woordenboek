@@ -78,7 +78,7 @@
             }
         </script>
         <style>
-            
+/*             
             .column
             {
                 flex: 50%;
@@ -91,10 +91,11 @@
             #column1
             {
                 text-align: right;
-            }
+            } */
         </style>
     </head>
     <body onload="paginaLaden()">
+        <div id="bodyID">
         <p id="hiernaam">        HIer komt uiteindelijk de tekst: "Welkom, "           </p>
         <span>voer hier je woord in</span>
         <input type="text" id="woordenInput">
@@ -103,6 +104,9 @@
         <input type="text" id="defenitieInput">
         <br>
         <input type="button" id="submitButton" onclick="woordToevoegen()" value="Submit">
+        </div>
+        <br>
+        <br>
         <div class="row">
             <div class="column" id="column1"></div>
             <div class="column" id="column2"></div>
