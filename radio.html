@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<script>
+    localStorage.clear;
+    var opgevraagd = localStorage.getItem("currentTekst"); // namen aanpassen 
+    var objectjson = JSON.parse(opgevraagd); // 
+    console.log(objectjson);
+   // document.getElementById("hiernaam").innerHTML += objectjson.naam;
+//     console.log(objectjson.naam);
+</script>
+
+<body>
+<textarea id="deDefinitie">De definitie staat hier</textarea>
+<br>
+<form >
+  <input type="radio" id="1" name="antwoorden" > <br>
+  <input type="radio" id="2" name="antwoorden" > <br>
+  <input type="radio" id="3" name="antwoorden" > <br>
+  <input type="radio" id="4" name="antwoorden" > <br>
+</form>
+
+<button id="knop" >selecteer het goede antwoord</button>
+
+
+</body>
+</html>
+
