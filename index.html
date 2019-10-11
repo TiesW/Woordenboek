@@ -16,9 +16,8 @@
                 }
             }
             var woordObjecten = [];
-            var woorden = [];
-            var definitie = [];
-            woord1 = new woord("croesus","Fabelachtige rijke koning");
+            var woorden = ["croesus","vadem","eskader","spondee","echelonneren","techina","mitsgaders","immanentie","ommekomst"];
+            var definitie = ["Fabelachtige rijke koning","Oude lengtemaat","Afdeling bij het leger","Versvoet","In rijen opstellen","Smeekgebed","Bovendien","Er in verblijvend","Afloop van termijn"];
 
             //croesus : "Fabelachtige rijke koning", vadem: "Oude lengtemaat", 
             //eskader: "Afdeling bij het leger", spondee: "Versvoet", 
@@ -34,11 +33,11 @@
             {
                 for(var a = 0; a < woorden.length; a++)
                 {
-                    woord = new woord(woorden[a],definitie[a]);
-                    woordObjecten.splice(0,0,woord);
-
-
+                    woord1 = new woord(woorden[a],definitie[a]);
+                    woordObjecten.splice(0,0,woord1);
                 }
+                console.log(woordObjecten);
+                
             }
 
 
@@ -87,7 +86,7 @@
         <span>voer hier je definitie in</span>
         <input type="text" id="defenitieInput">
         <br>
-        <input type="button" id="submitButton" onclick="woordToevoegen()" value="Submit">
+        <input type="button" id="submitButton" onclick="maakWoordObj()" value="Submit">
         <div class="row">
             <div class="column" id="column1"></div>
             <div class="column" id="column2"></div>
