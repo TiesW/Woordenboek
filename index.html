@@ -1,18 +1,69 @@
-<<<<<<< HEAD
 <html>
     <head>
+            <link rel="stylesheet" href="mijnstyles.css" type="text/css">
+            <script src="scripts/tweedepagina.js"></script>
+
         <script>
+            class woord
+            {
+                woord;
+                definitie;
+
+                constructor(woord,definitie)
+                {
+                    this.woord = woord;
+                    this.definitie = definitie;
+                }
+            }
+            var woordObjecten = [];
+            var woorden = [];
+            var definitie = [];
+            woord1 = new woord("croesus","Fabelachtige rijke koning");
+
+            //croesus : "Fabelachtige rijke koning", vadem: "Oude lengtemaat", 
+            //eskader: "Afdeling bij het leger", spondee: "Versvoet", 
+            //Echelonneren: "In rijen opstellen", Techina: "Smeekgebed",
+            //Mitsgaders: "Bovendien", Immanentie: "Er in verblijvend",
+            //Ommekomst: "Afloop van termijn"
+
+            //woord_ = "kaas";
+            //defenitie = "zuivelproduct";
+            
+
+            function maakWoordObj()
+            {
+                for(var a = 0; a < woorden.length; a++)
+                {
+                    woord = new woord(woorden[a],definitie[a]);
+                    woordObjecten.splice(0,0,woord);
+
+
+                }
+            }
+
+
             function woordToevoegen()
             {
-                var woord = document.getElementById("woordenInput").value;
-                var definitie = document.getElementById("defenitieInput").value;
+                //var woord = document.getElementById("woordenInput").value;
+                //var definitie = document.getElementById("defenitieInput").value;
+                console.log(woorden);
+                document.getElementById("column1").innerHTML = "";
+                document.getElementById("column2").innerHTML = "";
 
-                document.getElementById("column1").innerHTML += woord + ": &nbsp <br>";
-                document.getElementById("column2").innerHTML += definitie + "<br>";
+                for(var i = 0; i < woorden.length; i++)
+                {
+                    document.getElementById("column1").innerHTML +=  woorden[i].woord + ": &nbsp <br>";
+                    document.getElementById("column2").innerHTML +=  woorden[i].defenitie + "<br>";
+
+
+                }
+
+                
 
             }
         </script>
         <style>
+            
             .column
             {
                 flex: 50%;
@@ -26,10 +77,10 @@
             {
                 text-align: right;
             }
-
         </style>
     </head>
-    <body>
+    <body onload="spelerLaden()">
+        <p id="hiernaam">        HIer komt uiteindelijk de tekst: "Welkom, "           </p>
         <span>voer hier je woord in</span>
         <input type="text" id="woordenInput">
         <br>
@@ -42,27 +93,5 @@
             <div class="column" id="column2"></div>
         </div>
     </body>
-=======
-<!DOCTYPE html>
-<html>
-
-<head>
-        <link rel="stylesheet" href="mijnstyles.css" type="text/css">
-    <style>
-
-    </style>
-    
-        <script src="scripts/tweedepagina.js"></script>
-    
-</head>
-
-<body onload="spelerLaden()">
-   
-     
-            <p id="hiernaam">        HIer komt uiteindelijk de tekst: "Welkom, "           </p>
-
-    
-</body>
-
->>>>>>> master
 </html>
+
