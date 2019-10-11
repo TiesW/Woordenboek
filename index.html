@@ -3,6 +3,32 @@
             <link rel="stylesheet" href="mijnstyles.css" type="text/css">
             <script src="scripts/tweedepagina.js"></script>
 
+
+<head>
+        <link rel="stylesheet" href="mijnstyles.css" type="text/css">
+        <style>
+
+            </style>
+            
+    <script>
+    
+
+         woorden = {
+            croesus : "Fabelachtige rijke koning", vadem: "Oude lengtemaat", 
+            eskader: "Afdeling bij het leger", spondee: "Versvoet", 
+            Echelonneren: "In rijen opstellen", Techina: "Smeekgebed",
+            Mitsgaders: "Bovendien", Immanentie: "Er in verblijvend",
+            Ommekomst: "Afloop van termijn"
+
+         };
+          
+
+         console.log(woorden.vadem);
+
+        </script>
+    
+</head>
+
         <script>
             class Woord
             {
@@ -18,6 +44,7 @@
             var woordObjecten = [];
             var woorden = ["croesus","vadem","eskader","spondee","echelonneren","techina","mitsgaders","immanentie","ommekomst"];
             var definities = ["Fabelachtige rijke koning","Oude lengtemaat","Afdeling bij het leger","Versvoet","In rijen opstellen","Smeekgebed","Bovendien","Er in verblijvend","Afloop van termijn"];
+
 
             //croesus : "Fabelachtige rijke koning", vadem: "Oude lengtemaat", 
             //eskader: "Afdeling bij het leger", spondee: "Versvoet", 
@@ -78,7 +105,7 @@
             }
         </script>
         <style>
-            
+/*             
             .column
             {
                 flex: 50%;
@@ -91,10 +118,11 @@
             #column1
             {
                 text-align: right;
-            }
+            } */
         </style>
     </head>
     <body onload="paginaLaden()">
+        <div class="myBody">
         <p id="hiernaam">        HIer komt uiteindelijk de tekst: "Welkom, "           </p>
         <span>voer hier je woord in</span>
         <input type="text" id="woordenInput">
@@ -103,6 +131,9 @@
         <input type="text" id="defenitieInput">
         <br>
         <input type="button" id="submitButton" onclick="woordToevoegen()" value="Submit">
+        </div>
+        <br>
+        <br>
         <div class="row">
             <div class="column" id="column1"></div>
             <div class="column" id="column2"></div>
