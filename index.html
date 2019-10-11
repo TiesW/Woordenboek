@@ -59,17 +59,33 @@
 
             function woordToevoegen()
             {
-                var woord = document.getElementById("woordenInput").value;
-                var definitie = document.getElementById("defenitieInput").value;
-
+                if(!document.getElementById("woordenInput").value == "" && !document.getElementById("defenitieInput").value == "")
+                {
+                    var woord = document.getElementById("woordenInput").value;
+                    var definitie = document.getElementById("defenitieInput").value;
+                
+                
                 woorden.splice(0, 0, woord);
                 definities.splice(0, 0, definitie)
 
                 woord1 = new Woord(woorden[0],definities[0]);
-                woordObjecten.splice(0,0,woord1)
+                woordObjecten.splice(0,0,woord1);
+
+                //save words
+                var savedWords = JSON.stringify(woordObjecten);
+                localStorage.setItem("SavedWords",savedWords);
                 updateText();
-                
+
+                console.log(localStorage.getItem("SavedWords"));
+
+                }                
             }
+
+            function getRequest()
+            {
+                var req = new XMLHttpRequest();
+                var url = "https://wordsapiv1.p.mashape.com/words/fish/definitions";
+                }
 
             function updateText() {
                 lijstMaken();
