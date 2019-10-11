@@ -4,7 +4,7 @@
             <script src="scripts/tweedepagina.js"></script>
 
         <script>
-            class woord
+            class Woord
             {
                 woord;
                 definitie;
@@ -17,7 +17,7 @@
             }
             var woordObjecten = [];
             var woorden = ["croesus","vadem","eskader","spondee","echelonneren","techina","mitsgaders","immanentie","ommekomst"];
-            var definitie = ["Fabelachtige rijke koning","Oude lengtemaat","Afdeling bij het leger","Versvoet","In rijen opstellen","Smeekgebed","Bovendien","Er in verblijvend","Afloop van termijn"];
+            var definities = ["Fabelachtige rijke koning","Oude lengtemaat","Afdeling bij het leger","Versvoet","In rijen opstellen","Smeekgebed","Bovendien","Er in verblijvend","Afloop van termijn"];
 
             //croesus : "Fabelachtige rijke koning", vadem: "Oude lengtemaat", 
             //eskader: "Afdeling bij het leger", spondee: "Versvoet", 
@@ -28,37 +28,53 @@
             //woord_ = "kaas";
             //defenitie = "zuivelproduct";
             
+            function paginaLaden() {
+                maakWoordObj()
+                spelerLaden()
+            }
 
             function maakWoordObj()
             {
                 for(var a = 0; a < woorden.length; a++)
                 {
-                    woord1 = new woord(woorden[a],definitie[a]);
+                    woord1 = new Woord(woorden[a],definities[a]);
                     woordObjecten.splice(0,0,woord1);
                 }
                 console.log(woordObjecten);
+                updateText()
                 
             }
 
 
+
+
             function woordToevoegen()
             {
-                //var woord = document.getElementById("woordenInput").value;
-                //var definitie = document.getElementById("defenitieInput").value;
-                console.log(woorden);
+                var woord = document.getElementById("woordenInput").value;
+                var definitie = document.getElementById("defenitieInput").value;
+
+                woorden.splice(0, 0, woord);
+                definities.splice(0, 0, definitie)
+
+                woord1 = new Woord(woorden[0],definities[0]);
+                woordObjecten.splice(0,0,woord1)
+                updateText();
+                
+            }
+
+            function updateText() {
+
+                console.log(woordObjecten);
                 document.getElementById("column1").innerHTML = "";
                 document.getElementById("column2").innerHTML = "";
 
-                for(var i = 0; i < woorden.length; i++)
+                for(var i = 0; i < woordObjecten.length; i++)
                 {
-                    document.getElementById("column1").innerHTML +=  woorden[i].woord + ": &nbsp <br>";
-                    document.getElementById("column2").innerHTML +=  woorden[i].defenitie + "<br>";
+                    document.getElementById("column1").innerHTML +=  woordObjecten[i].woord + ": &nbsp <br>";
+                    document.getElementById("column2").innerHTML +=  woordObjecten[i].definitie + "<br>";
 
 
                 }
-
-                
-
             }
         </script>
         <style>
@@ -78,7 +94,7 @@
             }
         </style>
     </head>
-    <body onload="spelerLaden()">
+    <body onload="paginaLaden()">
         <p id="hiernaam">        HIer komt uiteindelijk de tekst: "Welkom, "           </p>
         <span>voer hier je woord in</span>
         <input type="text" id="woordenInput">
@@ -86,7 +102,7 @@
         <span>voer hier je definitie in</span>
         <input type="text" id="defenitieInput">
         <br>
-        <input type="button" id="submitButton" onclick="maakWoordObj()" value="Submit">
+        <input type="button" id="submitButton" onclick="woordToevoegen()" value="Submit">
         <div class="row">
             <div class="column" id="column1"></div>
             <div class="column" id="column2"></div>
