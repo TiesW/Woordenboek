@@ -3,6 +3,13 @@
             <link rel="stylesheet" href="mijnstyles.css" type="text/css">
             <script src="scripts/tweedepagina.js"></script>
 
+
+<head>
+        <link rel="stylesheet" href="mijnstyles.css" type="text/css">
+        <style>
+        </style>
+                
+</head>
         <script>
             class Woord
             {
@@ -19,6 +26,7 @@
             var woorden = ["croesus","vadem","eskader","spondee","echelonneren","techina","mitsgaders","immanentie","ommekomst"];
             var definities = ["Fabelachtige rijke koning","Oude lengtemaat","Afdeling bij het leger","Versvoet","In rijen opstellen","Smeekgebed","Bovendien","Er in verblijvend","Afloop van termijn"];
 
+
             //croesus : "Fabelachtige rijke koning", vadem: "Oude lengtemaat", 
             //eskader: "Afdeling bij het leger", spondee: "Versvoet", 
             //Echelonneren: "In rijen opstellen", Techina: "Smeekgebed",
@@ -31,6 +39,7 @@
             function paginaLaden() {
                 maakWoordObj()
                 spelerLaden()
+                lijstMaken()
             }
 
             function maakWoordObj()
@@ -50,24 +59,36 @@
 
             function woordToevoegen()
             {
-                var woord = document.getElementById("woordenInput").value;
-                var definitie = document.getElementById("defenitieInput").value;
-
+                if(!document.getElementById("woordenInput").value == "" && !document.getElementById("defenitieInput").value == "")
+                {
+                    var woord = document.getElementById("woordenInput").value;
+                    var definitie = document.getElementById("defenitieInput").value;
+                
+                
                 woorden.splice(0, 0, woord);
                 definities.splice(0, 0, definitie)
 
                 woord1 = new Woord(woorden[0],definities[0]);
-                woordObjecten.splice(0,0,woord1)
+                woordObjecten.splice(0,0,woord1);
+
+                //save words
+                var savedWords = JSON.stringify(woordObjecten);
+                localStorage.setItem("SavedWords",savedWords);
                 updateText();
 
-                //aanroepen checkInput?
-                
+                console.log(localStorage.getItem("SavedWords"));
 
-                
+                }                
+            }
+
+            function getRequest()
+            {
+                var req = new XMLHttpRequest();
+                var url = "https://wordsapiv1.p.mashape.com/words/fish/definitions";
             }
 
             function updateText() {
-
+                lijstMaken();
                 console.log(woordObjecten);
                 document.getElementById("column1").innerHTML = "";
                 document.getElementById("column2").innerHTML = "";
@@ -80,9 +101,30 @@
 
                 }
             }
+
+            
+            function lijstMaken(){
+
+                var tableHeaderRowCount = 1;
+                var table = document.getElementById("tabelwoorden");
+                var rowCount = table.rows.length;
+                for (var i = 1; i < rowCount; i++) {
+                    table.deleteRow(tableHeaderRowCount);
+                }
+
+                var rows = woordObjecten;
+                var html = document.getElementById("tabelwoorden").innerHTML;
+                for (var i = 0; i < rows.length; i++) {
+                    html+="<tr>";
+                    html+="<td>"+rows[i].woord+"</td>";
+                    html+="<td>"+rows[i].definitie+"</td>";
+                    html+="</tr>";
+                }
+                document.getElementById("tabelwoorden").innerHTML = html;
+                }
         </script>
         <style>
-            
+/*             
             .column
             {
                 flex: 50%;
@@ -95,10 +137,11 @@
             #column1
             {
                 text-align: right;
-            }
+            } */
         </style>
     </head>
     <body onload="paginaLaden()">
+        <div class="myBody">
         <p id="hiernaam">        HIer komt uiteindelijk de tekst: "Welkom, "           </p>
         <span>voer hier je woord in</span>
         <input type="text" id="woordenInput">
@@ -107,10 +150,27 @@
         <input type="text" id="defenitieInput">
         <br>
         <input type="button" id="submitButton" onclick="woordToevoegen()" value="Submit">
+        </div>
+        <br>
+        <br>
         <div class="row">
             <div class="column" id="column1"></div>
             <div class="column" id="column2"></div>
         </div>
+
+        <div class="container">
+                <div class="lijst">
+                    <h1>Woorden</h1>
+                    <table id="tabelwoorden">
+                        <tr>
+                            <th>Woord</th>
+                            <th>Definitie</th>
+
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
     </body>
 </html>
 
